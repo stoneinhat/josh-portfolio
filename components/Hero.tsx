@@ -21,7 +21,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-white dark:bg-gray-900 px-4 sm:px-6 lg:px-8"
+      className="relative min-h-screen overflow-hidden bg-white dark:bg-gray-900 px-4 sm:px-6 lg:px-8 pt-32 pb-24"
     >
       {/* Animated Gradient Background */}
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -35,24 +35,13 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-transparent to-white/50 dark:from-gray-900/50 dark:to-gray-900/50"></div>
       </div>
 
-      <div className="relative mx-auto max-w-4xl text-center z-10">
+      <div className="relative mx-auto max-w-4xl text-center z-10 flex flex-col items-center justify-center min-h-[calc(100vh-8rem)]">
         {/* Content */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            className="mb-6 inline-block rounded-full bg-blue-50 dark:bg-blue-900/30 px-4 py-1.5 backdrop-blur-sm border border-blue-100 dark:border-blue-800"
-          >
-            <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
-              👋 Hi, my name is
-            </span>
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -139,27 +128,6 @@ export function Hero() {
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="flex flex-col items-center gap-2 text-gray-400"
-        >
-          <span className="text-xs uppercase tracking-widest group-hover:text-blue-500 transition-colors">Scroll</span>
-          <ArrowDown className="h-4 w-4 text-blue-500" />
-        </motion.div>
-      </motion.div>
     </section>
   );
 }

@@ -62,7 +62,7 @@ export function About() {
                 {/* Image Wrapper */}
                 <div className="relative h-full w-full overflow-hidden rounded-full border-4 border-white dark:border-gray-800 shadow-2xl shadow-gray-200/50 dark:shadow-gray-900/50 bg-gray-50">
                    <Image 
-                     src="/josh-tesch.jpeg" 
+                     src="/Joshua zoomed in.png" 
                      alt="Joshua Tesch" 
                      fill 
                      className="object-cover" 

@@ -42,15 +42,58 @@ export function Projects() {
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block relative aspect-video overflow-hidden rounded-lg bg-gray-100 mb-6"
+                className={`block relative aspect-video overflow-hidden rounded-lg mb-6 flex items-center justify-center ${
+                  project.id === "modern-metals" || project.id === "celebree-school"
+                    ? "bg-gray-900 dark:bg-gray-800"
+                    : "bg-gray-100 dark:bg-gray-800"
+                }`}
               >
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
+                {project.id === "celebree-school" ? (
+                  <>
+                    {/* Celebree - constrained size to avoid blurriness */}
+                    <div className="relative w-full max-w-[300px] h-auto aspect-[300/72] dark:hidden">
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-contain transition-transform duration-500 group-hover:scale-105"
+                        sizes="300px"
+                        quality={100}
+                        unoptimized
+                      />
+                    </div>
+                    <div className="relative w-full max-w-[300px] h-auto aspect-[300/72] hidden dark:block">
+                      <Image
+                        src={(project as any).darkImage || project.image}
+                        alt={project.title}
+                        fill
+                        className="object-contain transition-transform duration-500 group-hover:scale-105"
+                        sizes="300px"
+                        quality={100}
+                        unoptimized
+                      />
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    {/* Light mode image */}
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-contain p-8 transition-transform duration-500 group-hover:scale-105 dark:hidden"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                    {/* Dark mode image */}
+                    <Image
+                      src={(project as any).darkImage || project.image}
+                      alt={project.title}
+                      fill
+                      className="object-contain p-8 transition-transform duration-500 group-hover:scale-105 hidden dark:block"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </>
+                )}
               </a>
 
               {/* Project Content */}
