@@ -32,7 +32,7 @@ export function About() {
     <section
       id="about"
       ref={ref}
-      className="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900"
+      className="py-24 px-4 sm:px-6 lg:px-8"
     >
       <div className="mx-auto max-w-6xl">
         <motion.div

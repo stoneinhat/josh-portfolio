@@ -14,7 +14,7 @@ export function Projects() {
     <section
       id="projects"
       ref={ref}
-      className="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900"
+      className="py-24 px-4 sm:px-6 lg:px-8"
     >
       <div className="mx-auto max-w-7xl">
         <motion.div

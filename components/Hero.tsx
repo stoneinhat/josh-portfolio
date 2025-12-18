@@ -21,19 +21,8 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen overflow-hidden bg-white dark:bg-gray-900 px-4 sm:px-6 lg:px-8 pt-32 pb-24"
+      className="relative min-h-screen overflow-hidden px-4 sm:px-6 lg:px-8 pt-32 pb-24"
     >
-      {/* Animated Gradient Background */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        {/* Main gradient orbs */}
-        <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-300 dark:bg-purple-900 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-xl opacity-70 dark:opacity-20 animate-blob"></div>
-        <div className="absolute top-0 -right-4 w-72 h-72 bg-yellow-300 dark:bg-yellow-900 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-xl opacity-70 dark:opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300 dark:bg-pink-900 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-xl opacity-70 dark:opacity-20 animate-blob animation-delay-4000"></div>
-        <div className="absolute bottom-8 right-20 w-72 h-72 bg-blue-300 dark:bg-blue-900 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-xl opacity-70 dark:opacity-20 animate-blob animation-delay-6000"></div>
-        
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-transparent to-white/50 dark:from-gray-900/50 dark:to-gray-900/50"></div>
-      </div>
 
       <div className="relative mx-auto max-w-4xl text-center z-10 flex flex-col items-center justify-center min-h-[calc(100vh-8rem)]">
         {/* Content */}

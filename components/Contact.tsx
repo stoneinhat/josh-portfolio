@@ -65,7 +65,7 @@ export function Contact() {
     <section
       id="contact"
       ref={ref}
-      className="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800"
+      className="py-24 px-4 sm:px-6 lg:px-8"
     >
       <div className="mx-auto max-w-6xl">
         <motion.div
