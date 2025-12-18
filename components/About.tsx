@@ -3,8 +3,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Card } from "./ui/Card";
-import { personalInfo } from "@/lib/constants";
 import { Code2, Rocket, Zap } from "lucide-react";
 import Image from "next/image";
 
@@ -58,20 +56,18 @@ export function About() {
           >
             <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96">
                 {/* Decorative Rings */}
-                <div className="absolute inset-0 rounded-full border border-gray-100 scale-110" />
-                <div className="absolute inset-0 rounded-full border border-gray-100 scale-125 opacity-50" />
+                <div className="absolute inset-0 rounded-full border border-gray-100 dark:border-gray-800 scale-110" />
+                <div className="absolute inset-0 rounded-full border border-gray-100 dark:border-gray-800 scale-125 opacity-50" />
                 
                 {/* Image Wrapper */}
-                <div className="relative h-full w-full overflow-hidden rounded-full border-4 border-white shadow-2xl shadow-gray-200/50 bg-gray-50">
-                   {/* Placeholder until real image is provided */}
-                   <div className="flex h-full w-full items-center justify-center bg-gray-50 text-gray-400">
-                      <div className="flex flex-col items-center gap-2">
-                        <Code2 size={48} className="text-gray-300" />
-                        <span className="text-sm font-medium">Headshot</span>
-                      </div>
-                   </div>
-                   {/* Once you have the image, use Next.js Image component here: */}
-                   {/* <Image src="/path/to/round-image.jpg" alt="Joshua Tesch" fill className="object-cover" /> */}
+                <div className="relative h-full w-full overflow-hidden rounded-full border-4 border-white dark:border-gray-800 shadow-2xl shadow-gray-200/50 dark:shadow-gray-900/50 bg-gray-50">
+                   <Image 
+                     src="/josh-tesch.jpeg" 
+                     alt="Joshua Tesch" 
+                     fill 
+                     className="object-cover" 
+                     priority
+                   />
                 </div>
 
                 {/* Floating Badge */}
@@ -79,9 +75,9 @@ export function About() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                     transition={{ delay: 0.6 }}
-                    className="absolute bottom-4 -right-4 bg-white px-4 py-2 rounded-full shadow-lg border border-gray-100 hidden sm:block"
+                    className="absolute bottom-4 -right-4 bg-white dark:bg-gray-800 px-4 py-2 rounded-full shadow-lg border border-gray-100 dark:border-gray-700 hidden sm:block"
                  >
-                    <span className="text-sm font-medium text-gray-900">Web Developer</span>
+                    <span className="text-sm font-medium text-gray-900 dark:text-white">Web Developer</span>
                  </motion.div>
             </div>
           </motion.div>
