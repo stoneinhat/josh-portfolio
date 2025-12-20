@@ -9,7 +9,7 @@ A modern, dark-themed portfolio website built with Next.js, TypeScript, and Tail
 - 📱 Fully responsive across all devices
 - ♿ Accessibility-focused (WCAG AA compliant)
 - 🚀 Optimized performance with Next.js 15
-- 📬 Working contact form with email integration
+- 📬 Working contact form with Slack integration
 - 🎯 SEO optimized with proper meta tags
 
 ## Tech Stack
@@ -19,7 +19,7 @@ A modern, dark-themed portfolio website built with Next.js, TypeScript, and Tail
 - **Styling:** Tailwind CSS 4
 - **Animations:** Framer Motion
 - **Form Handling:** React Hook Form + Zod validation
-- **Email Service:** Resend
+- **Notifications:** Slack Webhooks
 - **Icons:** Lucide React
 
 ## Getting Started
@@ -42,22 +42,23 @@ cd portfolio-site
 pnpm install
 ```
 
-3. Set up environment variables (optional for contact form):
+3. Set up environment variables (required for contact form):
 
 Create a `.env.local` file in the root directory:
 
 ```env
-# Contact Form Configuration (optional)
-RESEND_API_KEY=your_resend_api_key
-CONTACT_EMAIL=joshuastesch@gmail.com
+# Slack Webhook URL for Contact Form
+SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
 ```
 
-To get a Resend API key:
-- Sign up at [resend.com](https://resend.com)
-- Create an API key in your dashboard
-- Verify your domain (or use the free `onboarding@resend.dev` for testing)
+To get a Slack Webhook URL:
+- Go to [https://api.slack.com/messaging/webhooks](https://api.slack.com/messaging/webhooks)
+- Click "Create your Slack app" or use an existing app
+- Enable "Incoming Webhooks" and click "Add New Webhook to Workspace"
+- Select the channel where you want to receive contact form messages
+- Copy the generated webhook URL to your `.env.local` file
 
-**Note:** The contact form will work without the API key in development - it will log submissions to the console instead.
+**Note:** The contact form requires the Slack webhook URL to function properly.
 
 4. Run the development server:
 ```bash
@@ -171,10 +172,7 @@ This is a standard Next.js app and can be deployed to any platform that supports
 
 | Variable | Description | Required |
 |----------|-------------|----------|
-| `RESEND_API_KEY` | Resend API key for contact form | Optional* |
-| `CONTACT_EMAIL` | Email address to receive contact form submissions | Optional |
-
-*The contact form will work in development without the API key by logging to console.
+| `SLACK_WEBHOOK_URL` | Slack webhook URL for contact form notifications | Yes |
 
 ## License
 

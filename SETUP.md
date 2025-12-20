@@ -34,17 +34,18 @@ Option 2: Add images to `/public/projects/` and reference them like `/projects/y
 #### Resume PDF
 Replace `/public/resume.pdf` with your actual resume. The current file is just a placeholder.
 
-### 4. Contact Form Setup (Optional)
+### 4. Contact Form Setup (Required for Production)
 
-The contact form works without configuration in development (logs to console). For production:
+The contact form sends messages to Slack. To set it up:
 
-1. Sign up at [resend.com](https://resend.com)
-2. Get your API key
-3. Create `.env.local` file:
+1. Go to [https://api.slack.com/messaging/webhooks](https://api.slack.com/messaging/webhooks)
+2. Create or select a Slack app
+3. Enable "Incoming Webhooks" and add a webhook to your workspace
+4. Copy the webhook URL
+5. Create `.env.local` file:
 
 ```env
-RESEND_API_KEY=re_your_api_key_here
-CONTACT_EMAIL=joshuastesch@gmail.com
+SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
 ```
 
 ### 5. Build for Production

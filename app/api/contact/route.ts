@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
   try {
@@ -14,47 +16,101 @@ export async function POST(request: Request) {
       );
     }
 
-    // If RESEND_API_KEY is not set, log to console instead
-    if (!process.env.RESEND_API_KEY) {
-      console.log("Contact form submission (no email service configured):", {
-        name,
-        email,
-        subject,
-        message,
-      });
-      
-      // Return success anyway for development
+    // Get the Slack Webhook URL from environment variables
+    const slackWebhookUrl = process.env.SLACK_WEBHOOK_URL;
+    if (!slackWebhookUrl) {
+      console.error("SLACK_WEBHOOK_URL is not defined in environment variables.");
       return NextResponse.json(
-        { message: "Message received (logged to console)" },
-        { status: 200 }
+        { error: "Server configuration error." },
+        { status: 500 }
       );
     }
 
-    // Send email using Resend
-    const resend = new Resend(process.env.RESEND_API_KEY);
-    const data = await resend.emails.send({
-      from: "Portfolio Contact <onboarding@resend.dev>", // Update with your verified domain
-      to: process.env.CONTACT_EMAIL || "joshuastesch@gmail.com",
-      replyTo: email,
-      subject: subject || `Portfolio Contact from ${name}`,
-      html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        ${subject ? `<p><strong>Subject:</strong> ${subject}</p>` : ""}
-        <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, "<br>")}</p>
-      `,
+    // Construct the Slack message payload using Slack's "Block Kit" for better formatting
+    const slackMessage = {
+      text: `New Portfolio Contact from ${name}`,
+      blocks: [
+        {
+          type: "header",
+          text: {
+            type: "plain_text",
+            text: "📬 New Portfolio Contact Form Submission",
+          },
+        },
+        {
+          type: "section",
+          fields: [
+            {
+              type: "mrkdwn",
+              text: `*Name:*\n${name}`,
+            },
+            {
+              type: "mrkdwn",
+              text: `*Email:*\n${email}`,
+            },
+          ],
+        },
+        ...(subject
+          ? [
+              {
+                type: "section",
+                text: {
+                  type: "mrkdwn",
+                  text: `*Subject:*\n${subject}`,
+                },
+              },
+            ]
+          : []),
+        {
+          type: "divider",
+        },
+        {
+          type: "section",
+          text: {
+            type: "mrkdwn",
+            text: `*Message:*\n\`\`\`${message}\`\`\``,
+          },
+        },
+        {
+          type: "context",
+          elements: [
+            {
+              type: "mrkdwn",
+              text: `Received at: ${new Date().toLocaleString()}`,
+            },
+          ],
+        },
+      ],
+    };
+
+    // Send the message to Slack
+    const slackResponse = await fetch(slackWebhookUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(slackMessage),
     });
 
+    // Check if the message was sent successfully
+    if (!slackResponse.ok) {
+      const responseText = await slackResponse.text();
+      console.error("Failed to send message to Slack:", responseText);
+      return NextResponse.json(
+        { error: "Failed to send message." },
+        { status: 500 }
+      );
+    }
+
+    // Return a success response to the client
     return NextResponse.json(
-      { message: "Email sent successfully", data },
+      { message: "Message sent successfully!" },
       { status: 200 }
     );
   } catch (error) {
-    console.error("Contact form error:", error);
+    console.error("Error processing request:", error);
     return NextResponse.json(
-      { error: "Failed to send email" },
+      { error: "An unexpected error occurred." },
       { status: 500 }
     );
   }
