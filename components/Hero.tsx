@@ -15,7 +15,7 @@ export function Hero() {
   };
 
   const handleDownloadResume = () => {
-    window.open("/resume.pdf", "_blank");
+    window.open("/download-resume.html", "_blank");
   };
 
   return (
