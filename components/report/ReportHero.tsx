@@ -33,6 +33,13 @@ export function ReportHero() {
       <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
         {executiveSummary}
       </p>
+      <div className="mt-10 flex items-center gap-4">
+        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent" />
+        <span className="text-xs font-semibold tracking-widest uppercase text-gray-400 dark:text-gray-500 select-none">
+          Report
+        </span>
+        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent" />
+      </div>
     </header>
   );
 }

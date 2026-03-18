@@ -19,7 +19,7 @@ export default function LiteracyInfluencerReportPage() {
     <div className="min-h-screen pb-20">
       <ReportHero />
 
-      <div className="flex flex-col md:flex-row gap-8 md:gap-12 px-4 md:px-8 max-w-6xl mx-auto">
+      <div className="flex flex-col md:flex-row gap-8 md:gap-12 px-4 md:px-8 max-w-full mx-auto">
         <aside className="flex-shrink-0 order-1">
           <ReportNavigation />
         </aside>
