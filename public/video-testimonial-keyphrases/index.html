@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video Testimonial Keyphrases — Reading Horizons</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg:        #0d0b09;
+    --surface:   #161310;
+    --surface2:  #1f1b17;
+    --border:    #2a2420;
+    --border2:   #3a3028;
+    --text:      #ede7da;
+    --text-dim:  #8a7f72;
+    --text-faint:#4a4038;
+    --gold:      #c9973a;
+    --gold-lt:   #e8b85a;
+    --amber:     #d4672a;
+    --teal:      #3a9480;
+    --teal-lt:   #5ab8a2;
+    --rose:      #c44a4a;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── GRAIN OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.028;
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  /* ── LAYOUT ── */
+  .wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px 100px;
+  }
+
+  /* ── HEADER ── */
+  header {
+    padding: 80px 40px 0;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header-rule {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.1s forwards;
+  }
+
+  .header-rule-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold) 0%, transparent 100%);
+  }
+
+  .header-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+
+  .header-main {
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.25s forwards;
+  }
+
+  .report-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .report-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(44px, 6vw, 76px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--gold-lt);
+  }
+
+  .header-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--text-dim);
+    margin-top: 12px;
+    margin-bottom: 48px;
+  }
+
+  .header-meta {
+    display: flex;
+    gap: 40px;
+    padding: 24px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 64px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.5s forwards;
+  }
+
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .meta-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+
+  .meta-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--gold);
+  }
+
+  /* ── SECTION ── */
+  section {
+    margin-bottom: 72px;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin-bottom: 32px;
+  }
+
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-faint);
+    letter-spacing: 0.1em;
+    padding-top: 4px;
+  }
+
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 34px;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    line-height: 1.15;
+  }
+
+  h2 em {
+    font-style: italic;
+    color: var(--gold-lt);
+  }
+
+  .section-divider {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── CALLOUT BOX ── */
+  .callout {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-left: 3px solid var(--gold);
+    padding: 24px 28px;
+    margin-bottom: 36px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--text-dim);
+  }
+
+  .callout strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* ── KEYWORD TABLE ── */
+  .kw-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .kw-table thead tr {
+    border-bottom: 1px solid var(--border2);
+  }
+
+  .kw-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    padding: 0 16px 14px 0;
+    text-align: left;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+
+  .kw-table th:last-child { padding-right: 0; }
+
+  .kw-table tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s ease;
+    cursor: default;
+  }
+
+  .kw-table tbody tr:hover {
+    background: var(--surface2);
+  }
+
+  .kw-table td {
+    padding: 16px 16px 16px 0;
+    vertical-align: middle;
+  }
+
+  .kw-table td:last-child { padding-right: 0; }
+
+  .kw-phrase {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+
+  .kw-phrase.featured {
+    color: var(--gold-lt);
+  }
+
+  /* Volume bar */
+  .vol-cell {
+    min-width: 140px;
+  }
+
+  .vol-bar-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .vol-bar-bg {
+    flex: 1;
+    height: 4px;
+    background: var(--border2);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .vol-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--teal), var(--teal-lt));
+    width: 0;
+    transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .vol-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--teal-lt);
+    min-width: 40px;
+    text-align: right;
+  }
+
+  /* KD gauge */
+  .kd-cell { min-width: 80px; }
+
+  .kd-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 2px;
+  }
+
+  .kd-badge.low    { background: rgba(58,148,128,0.15); color: var(--teal-lt);  border: 1px solid rgba(58,148,128,0.3); }
+  .kd-badge.medium { background: rgba(201,151,58,0.12); color: var(--gold-lt);  border: 1px solid rgba(201,151,58,0.3); }
+  .kd-badge.high   { background: rgba(196,74,74,0.12);  color: #e87070;         border: 1px solid rgba(196,74,74,0.3);  }
+  .kd-badge.none   { background: rgba(74,64,56,0.3);    color: var(--text-faint); border: 1px solid var(--border2); }
+
+  .kd-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+  }
+
+  .kd-badge.low    .kd-dot { background: var(--teal-lt); }
+  .kd-badge.medium .kd-dot { background: var(--gold-lt); }
+  .kd-badge.high   .kd-dot { background: #e87070; }
+  .kd-badge.none   .kd-dot { background: var(--text-faint); }
+
+  /* Priority */
+  .priority-badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+  }
+
+  .priority-badge.p1 { background: rgba(212,103,42,0.18); color: var(--amber); border: 1px solid rgba(212,103,42,0.35); }
+  .priority-badge.p2 { background: rgba(201,151,58,0.12); color: var(--gold); border: 1px solid rgba(201,151,58,0.3); }
+  .priority-badge.p3 { background: rgba(74,64,56,0.3); color: var(--text-faint); border: 1px solid var(--border2); }
+
+  .kw-note {
+    font-size: 11px;
+    color: var(--text-faint);
+    font-family: 'DM Mono', monospace;
+    margin-top: 4px;
+  }
+
+  /* ── HOOKS GRID ── */
+  .hooks-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .hook-card {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+
+  .hook-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  .hook-card:hover {
+    border-color: var(--border2);
+    transform: translateY(-2px);
+  }
+
+  .hook-card:hover::before { opacity: 1; }
+
+  .hook-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .hook-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 21px;
+    line-height: 1.35;
+    color: var(--text);
+  }
+
+  .hook-target {
+    margin-top: 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text-faint);
+  }
+
+  .hook-target span {
+    color: var(--teal-lt);
+  }
+
+  /* ── TITLE FORMULAS ── */
+  .title-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .title-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 18px 22px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    line-height: 1.4;
+    color: var(--text);
+    position: relative;
+    padding-left: 46px;
+    transition: border-color 0.2s ease;
+  }
+
+  .title-item:hover {
+    border-color: var(--gold);
+  }
+
+  .title-item::before {
+    content: attr(data-n);
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text-faint);
+  }
+
+  .title-item em {
+    font-style: italic;
+    color: var(--gold-lt);
+  }
+
+  /* ── HASHTAG CLOUD ── */
+  .hashtag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .hashtag {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    padding: 6px 14px;
+    border: 1px solid var(--border2);
+    color: var(--text-dim);
+    background: var(--surface);
+    border-radius: 2px;
+    transition: all 0.2s ease;
+    cursor: default;
+  }
+
+  .hashtag:hover {
+    border-color: var(--teal);
+    color: var(--teal-lt);
+    background: rgba(58,148,128,0.08);
+  }
+
+  .hashtag.primary {
+    border-color: rgba(201,151,58,0.4);
+    color: var(--gold);
+    background: rgba(201,151,58,0.06);
+  }
+
+  /* ── RECOMMENDATIONS ── */
+  .rec-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .rec-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .rec-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+  }
+
+  .rec-card.high::after  { background: linear-gradient(90deg, var(--amber), transparent); }
+  .rec-card.medium::after { background: linear-gradient(90deg, var(--gold), transparent); }
+  .rec-card.low::after   { background: linear-gradient(90deg, var(--teal), transparent); }
+
+  .rec-priority {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .rec-card.high   .rec-priority { color: var(--amber); }
+  .rec-card.medium .rec-priority { color: var(--gold); }
+  .rec-card.low    .rec-priority { color: var(--teal-lt); }
+
+  .rec-priority::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 1px;
+  }
+
+  .rec-card.high   .rec-priority::before { background: var(--amber); }
+  .rec-card.medium .rec-priority::before { background: var(--gold); }
+  .rec-card.low    .rec-priority::before { background: var(--teal-lt); }
+
+  .rec-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--text-faint);
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    letter-spacing: -0.04em;
+  }
+
+  .rec-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    line-height: 1.2;
+    color: var(--text);
+    margin-bottom: 12px;
+    font-weight: 400;
+  }
+
+  .rec-body {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+
+  .rec-body strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* ── INSIGHT STRIP ── */
+  .insight-strip {
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    border-left: 3px solid var(--amber);
+    display: flex;
+    gap: 40px;
+    padding: 24px 28px;
+    margin-bottom: 48px;
+    align-items: flex-start;
+  }
+
+  .insight-icon {
+    font-size: 28px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .insight-content {}
+
+  .insight-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 6px;
+  }
+
+  .insight-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--text-dim);
+  }
+
+  .insight-text strong { color: var(--text); }
+
+  /* ── STAT ROW ── */
+  .stat-row {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--border2);
+    margin-bottom: 40px;
+    overflow: hidden;
+  }
+
+  .stat-item {
+    flex: 1;
+    padding: 28px 24px;
+    border-right: 1px solid var(--border2);
+    position: relative;
+  }
+
+  .stat-item:last-child { border-right: none; }
+
+  .stat-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--gold-lt);
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+
+  .stat-value .unit {
+    font-size: 18px;
+    color: var(--gold);
+    font-family: 'DM Mono', monospace;
+  }
+
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    line-height: 1.4;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 40px 48px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--text-faint);
+    font-style: italic;
+  }
+
+  .footer-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text-faint);
+    letter-spacing: 0.1em;
+    text-align: right;
+    line-height: 1.8;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes countUp {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  .fade-in-1 { opacity: 0; animation: fadeUp 0.7s ease 0.3s forwards; }
+  .fade-in-2 { opacity: 0; animation: fadeUp 0.7s ease 0.5s forwards; }
+  .fade-in-3 { opacity: 0; animation: fadeUp 0.7s ease 0.7s forwards; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 780px) {
+    header, .wrapper { padding-left: 20px; padding-right: 20px; }
+    .rec-grid { grid-template-columns: 1fr; }
+    .hooks-grid { grid-template-columns: 1fr; }
+    .stat-row { flex-direction: column; }
+    .stat-item { border-right: none; border-bottom: 1px solid var(--border2); }
+    footer { flex-direction: column; gap: 16px; text-align: center; }
+    .footer-meta { text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header>
+  <div class="header-rule">
+    <div class="header-tag">Keyword Research Brief · readinghorizons.com</div>
+    <div class="header-rule-line"></div>
+    <div class="header-tag">March 2026</div>
+  </div>
+
+  <div class="header-main">
+    <div class="report-eyebrow">Video Content Strategy</div>
+    <h1>Best Keyphrases<br>for <em>Video Testimonials</em></h1>
+    <p class="header-sub">Short-form &amp; long-form video — search intent, hooks, and titles</p>
+  </div>
+
+  <div class="header-meta">
+    <div class="meta-item">
+      <span class="meta-label">Domain</span>
+      <span class="meta-value">readinghorizons.com</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Report Date</span>
+      <span class="meta-value">2026-03-18</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Data Source</span>
+      <span class="meta-value">DataForSEO · Google US</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Content Types</span>
+      <span class="meta-value">YouTube · Reels · TikTok · Shorts</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrapper">
+
+  <!-- ══ KEY INSIGHT ══ -->
+  <div class="insight-strip fade-in-1">
+    <div class="insight-icon">◈</div>
+    <div class="insight-content">
+      <div class="insight-label">Critical Insight</div>
+      <div class="insight-text">
+        <strong>"Review" and "testimonial" exact-match queries have near-zero search volume (10–40/mo).</strong>
+        Viewers don't search for testimonials — they search for problems and solutions.
+        Your videos need titles targeting <strong>parent pain points and program comparisons</strong>, not the word "testimonial."
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ AT A GLANCE ══ -->
+  <div class="stat-row fade-in-2">
+    <div class="stat-item">
+      <div class="stat-value">1,300<span class="unit">/mo</span></div>
+      <div class="stat-label">Top keyword cluster<br>reading program for dyslexia</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">KD 3</div>
+      <div class="stat-label">Lowest difficulty keyword<br>best reading program for dyslexia</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">1,000<span class="unit">/mo</span></div>
+      <div class="stat-label">Parent search intent<br>how to teach my child to read</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">40<span class="unit">/mo</span></div>
+      <div class="stat-label">Branded query<br>reading horizons review</div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 1 — LONG FORM ══ -->
+  <section>
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2>Long-Form Video <em>Keyphrases</em></h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="callout">
+      Use these phrases in your <strong>YouTube video titles, descriptions, and tags</strong>. Google and YouTube search indexes these directly — the right keyphrase in a title can surface a testimonial video for thousands of monthly searches.
+    </div>
+
+    <table class="kw-table">
+      <thead>
+        <tr>
+          <th style="width:35%">Keyphrase</th>
+          <th style="width:22%">Monthly Volume</th>
+          <th style="width:12%">KD</th>
+          <th style="width:12%">Competition</th>
+          <th style="width:19%">Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td><div class="kw-phrase featured">reading program for dyslexia</div></td>
+          <td class="vol-cell">
+            <div class="vol-bar-wrap">
+              <div class="vol-bar-bg"><div class="vol-bar-fill" data-pct="100"></div></div>
+              <div class="vol-num">1,300</div>
+            </div>
+          </td>
+          <td class="kd-cell"><span class="kd-badge low"><span class="kd-dot"></span>12</span></td>
+          <td><span class="priority-badge p2">Medium</span></td>
+          <td><span class="kw-note">#1 priority — highest volume, low difficulty</span></td>
+        </tr>
+
+        <tr>
+          <td><div class="kw-phrase featured">how to teach my child to read</div></td>
+          <td class="vol-cell">
+            <div class="vol-bar-wrap">
+              <div class="vol-bar-bg"><div class="vol-bar-fill" data-pct="77"></div></div>
+              <div class="vol-num">1,000</div>
+            </div>
+          </td>
+          <td class="kd-cell"><span class="kd-badge low"><span class="kd-dot"></span>23</span></td>
+          <td><span class="priority-badge p1">High</span></td>
+          <td><span class="kw-note">Broad parent intent, transformation stories</span></td>
+        </tr>
+
+        <tr>
+          <td><div class="kw-phrase">best reading program for dyslexia</div></td>
+          <td class="vol-cell">
+            <div class="vol-bar-wrap">
+              <div class="vol-bar-bg"><div class="vol-bar-fill" data-pct="13"></div></div>
+              <div class="vol-num">170</div>
+            </div>
+          </td>
+          <td class="kd-cell"><span class="kd-badge low"><span class="kd-dot"></span>3</span></td>
+          <td><span class="priority-badge p1">High</span></td>
+          <td><span class="kw-note">KD of 3 — exceptional opportunity</span></td>
+        </tr>
+
+        <tr>
+          <td><div class="kw-phrase">best dyslexia reading program</div></td>
+          <td class="vol-cell">
+            <div class="vol-bar-wrap">
+              <div class="vol-bar-bg"><div class="vol-bar-fill" data-pct="13"></div></div>
+              <div class="vol-num">170</div>
+            </div>
+          </td>
+          <td class="kd-cell"><span class="kd-badge low"><span class="kd-dot"></span>3</span></td>
+          <td><span class="priority-badge p1">High</span></td>
+          <td><span class="kw-note">Same cluster — alternate phrasing</span></td>
+        </tr>
+
+        <tr>
+          <td><div class="kw-phrase">learn to read program</div></td>
+          <td class="vol-cell">
+            <div class="vol-bar-wrap">
+              <div class="vol-bar-bg"><div class="vol-bar-fill" data-pct="20"></div></div>
+              <div class="vol-num">260</div>
+            </div>
+          </td>
+          <td class="kd-cell"><span class="kd-badge low"><span class="kd-dot"></span>19</span></td>
+          <td><span class="priority-badge p1">High</span></td>
+          <td><span class="kw-note">General audience testimonials</span></td>
+        </tr>
+
+        <tr>
+          <td><div class="kw-phrase">best learn to read program</div></td>
+          <td class="vol-cell">
+            <div class="vol-bar-wrap">
+              <div class="vol-bar-bg"><div class="vol-bar-fill" data-pct="11"></div></div>
+              <div class="vol-num">140</div>
+            </div>
+          </td>
+          <td class="kd-cell"><span class="kd-badge none"><span class="kd-dot"></span>—</span></td>
+          <td><span class="priority-badge p1">High</span></td>
+          <td><span class="kw-note">High advertiser competition</span></td>
+        </tr>
+
+        <tr>
+          <td><div class="kw-phrase">online reading program for dyslexia</div></td>
+          <td class="vol-cell">
+            <div class="vol-bar-wrap">
+              <div class="vol-bar-bg"><div class="vol-bar-fill" data-pct="8"></div></div>
+              <div class="vol-num">110</div>
+            </div>
+          </td>
+          <td class="kd-cell"><span class="kd-badge low"><span class="kd-dot"></span>18</span></td>
+          <td><span class="priority-badge p2">Medium</span></td>
+          <td><span class="kw-note">Strong for at-home / homeschool stories</span></td>
+        </tr>
+
+        <tr>
+          <td><div class="kw-phrase">reading horizons review</div></td>
+          <td class="vol-cell">
+            <div class="vol-bar-wrap">
+              <div class="vol-bar-bg"><div class="vol-bar-fill" data-pct="3"></div></div>
+              <div class="vol-num">40</div>
+            </div>
+          </td>
+          <td class="kd-cell"><span class="kd-badge low"><span class="kd-dot"></span>LOW</span></td>
+          <td><span class="priority-badge p2">Low</span></td>
+          <td><span class="kw-note">Branded — include in every video</span></td>
+        </tr>
+
+        <tr>
+          <td><div class="kw-phrase">reading horizons phonics review</div></td>
+          <td class="vol-cell">
+            <div class="vol-bar-wrap">
+              <div class="vol-bar-bg"><div class="vol-bar-fill" data-pct="0"></div></div>
+              <div class="vol-num">—</div>
+            </div>
+          </td>
+          <td class="kd-cell"><span class="kd-badge none"><span class="kd-dot"></span>—</span></td>
+          <td><span class="priority-badge p3">Low</span></td>
+          <td><span class="kw-note">Zero competition, future branded search</span></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ══ SECTION 2 — VIDEO TITLE FORMULAS ══ -->
+  <section>
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2>Recommended <em>Title Formulas</em></h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="callout">
+      These titles are engineered to match high-volume search queries while remaining emotionally compelling for organic click-through. Lead with the keyphrase, follow with the brand name.
+    </div>
+
+    <div class="title-list">
+      <div class="title-item" data-n="01">"We Finally Found a <em>Reading Program for Dyslexia</em> That Works — Reading Horizons Review"</div>
+      <div class="title-item" data-n="02">"<em>How I Taught My Child to Read</em> Using Reading Horizons (Honest Parent Review)"</div>
+      <div class="title-item" data-n="03">"<em>Best Online Reading Program for Dyslexia</em>? Our Experience After 6 Months"</div>
+      <div class="title-item" data-n="04">"My Struggling Reader Is Now Reading at Grade Level — Reading Horizons Results"</div>
+      <div class="title-item" data-n="05">"<em>Learn to Read Program</em> Review: Why We Chose Reading Horizons Over Everything Else"</div>
+    </div>
+  </section>
+
+  <!-- ══ SECTION 3 — SHORT FORM ══ -->
+  <section>
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2>Short-Form <em>Video Hooks</em></h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="callout">
+      Short-form (Reels, TikTok, Shorts) is <strong>algorithm-driven, not search-driven.</strong> The keyphrase here becomes your opening hook — the first 3 seconds. These hooks align with the same high-intent search clusters above, so they attract the right audience organically.
+    </div>
+
+    <div class="hooks-grid">
+
+      <div class="hook-card">
+        <div class="hook-label">Hook A · Dyslexia Angle</div>
+        <div class="hook-text">"My dyslexic child couldn't read a single word. Here's what finally changed."</div>
+        <div class="hook-target">Targets → <span>reading program for dyslexia (1,300/mo)</span></div>
+      </div>
+
+      <div class="hook-card">
+        <div class="hook-label">Hook B · Parent Transformation</div>
+        <div class="hook-text">"I spent two years trying to teach my kid to read. Then I found this."</div>
+        <div class="hook-target">Targets → <span>how to teach my child to read (1,000/mo)</span></div>
+      </div>
+
+      <div class="hook-card">
+        <div class="hook-label">Hook C · Comparison / Best-Of</div>
+        <div class="hook-text">"We tried every reading program. This one was actually different."</div>
+        <div class="hook-target">Targets → <span>best learn to read program (140/mo)</span></div>
+      </div>
+
+      <div class="hook-card">
+        <div class="hook-label">Hook D · Results-First</div>
+        <div class="hook-text">"3 months with Reading Horizons — here are our actual results."</div>
+        <div class="hook-target">Targets → <span>reading horizons review (40/mo, LOW competition)</span></div>
+      </div>
+
+      <div class="hook-card">
+        <div class="hook-label">Hook E · Emotional Stakes</div>
+        <div class="hook-text">"Reading time used to end in tears every single night. Not anymore."</div>
+        <div class="hook-target">Targets → <span>struggling reader audience → dyslexia cluster</span></div>
+      </div>
+
+      <div class="hook-card">
+        <div class="hook-label">Hook F · Educator / School</div>
+        <div class="hook-text">"My students were years behind in reading. This is what we used to catch them up."</div>
+        <div class="hook-target">Targets → <span>reading intervention program audience</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ SECTION 4 — HASHTAGS ══ -->
+  <section>
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2>Hashtag <em>Clusters</em></h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="callout">
+      Use 8–12 hashtags per short-form video. Lead with the primary cluster, mix in secondary. The golden hashtags are marked — these have high reach with relevant, in-market audiences.
+    </div>
+
+    <div style="margin-bottom: 16px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold);">Primary — Always Use</div>
+    <div class="hashtag-cloud" style="margin-bottom: 28px;">
+      <span class="hashtag primary">#readingprogram</span>
+      <span class="hashtag primary">#dyslexiareading</span>
+      <span class="hashtag primary">#learntoread</span>
+      <span class="hashtag primary">#readinghorizons</span>
+      <span class="hashtag primary">#phonics</span>
+      <span class="hashtag primary">#structuredliteracy</span>
+    </div>
+
+    <div style="margin-bottom: 16px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-faint);">Secondary — Mix and Match</div>
+    <div class="hashtag-cloud">
+      <span class="hashtag">#homeschoolreading</span>
+      <span class="hashtag">#dyslexiamom</span>
+      <span class="hashtag">#strugglingreader</span>
+      <span class="hashtag">#readinghelp</span>
+      <span class="hashtag">#readingintervention</span>
+      <span class="hashtag">#phonicsreading</span>
+      <span class="hashtag">#teachingkidstoread</span>
+      <span class="hashtag">#dyslexiaawareness</span>
+      <span class="hashtag">#readingtips</span>
+      <span class="hashtag">#homeschool</span>
+      <span class="hashtag">#earlyreading</span>
+      <span class="hashtag">#literacymatters</span>
+    </div>
+  </section>
+
+  <!-- ══ SECTION 5 — RECOMMENDATIONS ══ -->
+  <section>
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2><em>Prioritised</em> Recommendations</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="rec-grid">
+
+      <div class="rec-card high">
+        <div class="rec-num">01</div>
+        <div class="rec-priority">High Priority</div>
+        <div class="rec-title">Lead with the dyslexia angle</div>
+        <div class="rec-body">
+          Even if the subject isn't dyslexic, a <strong>struggling reader story</strong> maps perfectly to this cluster. "Reading program for dyslexia" gets 1,300/mo with KD 3–17 — the single largest opportunity.
+        </div>
+      </div>
+
+      <div class="rec-card high">
+        <div class="rec-num">02</div>
+        <div class="rec-priority">High Priority</div>
+        <div class="rec-title">Create a standalone Review video</div>
+        <div class="rec-body">
+          "Reading Horizons Review" pulls 40 branded searches/mo with <strong>almost no competing videos</strong>. Anyone already in the funnel will find it. This is your easiest win on YouTube.
+        </div>
+      </div>
+
+      <div class="rec-card medium">
+        <div class="rec-num">03</div>
+        <div class="rec-priority">Medium Priority</div>
+        <div class="rec-title">Build transformation hooks for short-form</div>
+        <div class="rec-body">
+          Pair 60-second emotional clips with the hashtag clusters above. Short-form feeds the <strong>YouTube algorithm</strong> and gets surfaced to the right audience passively, compounding over time.
+        </div>
+      </div>
+
+      <div class="rec-card medium">
+        <div class="rec-num">04</div>
+        <div class="rec-priority">Medium Priority</div>
+        <div class="rec-title">Target the parent question keyword</div>
+        <div class="rec-body">
+          "How to teach my child to read" (1,000/mo, KD 23) is a question-form query that <strong>YouTube surfaces strongly</strong> for how-to and informational video. Build a parent-focused testimonial around this phrasing.
+        </div>
+      </div>
+
+      <div class="rec-card low">
+        <div class="rec-num">05</div>
+        <div class="rec-priority">Low Priority</div>
+        <div class="rec-title">Plant branded variant phrases</div>
+        <div class="rec-body">
+          Include <strong>"reading horizons phonics review"</strong> and <strong>"reading horizons intensive phonics review"</strong> in video descriptions. Zero current volume, zero competition — owns the SERP as branded search grows.
+        </div>
+      </div>
+
+      <div class="rec-card low">
+        <div class="rec-num">06</div>
+        <div class="rec-priority">Low Priority</div>
+        <div class="rec-title">Layer online & homeschool angles</div>
+        <div class="rec-body">
+          "Online reading program for dyslexia" (110/mo, KD 18) and the homeschool cluster are <strong>underserved niches</strong> with clear video opportunities. Gather testimonials specifically from homeschool families or remote users.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div><!-- /wrapper -->
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-brand">Reading Horizons · SEO Research</div>
+  <div class="footer-meta">
+    Generated 2026-03-18<br>
+    Data: DataForSEO · Google United States<br>
+    Claude SEO Assistant
+  </div>
+</footer>
+
+<script>
+  // ── Scroll reveal ──
+  const sections = document.querySelectorAll('section');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  sections.forEach(s => observer.observe(s));
+
+  // ── Animate volume bars ──
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const fills = entry.target.querySelectorAll('.vol-bar-fill[data-pct]');
+        fills.forEach(fill => {
+          const pct = fill.getAttribute('data-pct');
+          setTimeout(() => {
+            fill.style.width = pct + '%';
+          }, 120);
+        });
+        barObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('table').forEach(t => barObserver.observe(t));
+
+  // ── Stagger stat items ──
+  document.querySelectorAll('.stat-item').forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(16px)';
+    el.style.transition = `opacity 0.5s ease ${0.3 + i * 0.1}s, transform 0.5s ease ${0.3 + i * 0.1}s`;
+    setTimeout(() => {
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    }, 100);
+  });
+
+  // ── Stagger hook cards ──
+  const hookCards = document.querySelectorAll('.hook-card');
+  const hookObserver = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      hookCards.forEach((card, i) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = `opacity 0.5s ease ${i * 0.08}s, transform 0.5s ease ${i * 0.08}s`;
+        setTimeout(() => {
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }, 50 + i * 80);
+      });
+      hookObserver.disconnect();
+    }
+  }, { threshold: 0.1 });
+
+  const hooksSection = document.querySelector('.hooks-grid');
+  if (hooksSection) hookObserver.observe(hooksSection);
+
+  // ── Stagger rec cards ──
+  const recCards = document.querySelectorAll('.rec-card');
+  const recObserver = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      recCards.forEach((card, i) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = `opacity 0.5s ease ${i * 0.1}s, transform 0.5s ease ${i * 0.1}s`;
+        setTimeout(() => {
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }, 50 + i * 100);
+      });
+      recObserver.disconnect();
+    }
+  }, { threshold: 0.1 });
+
+  const recGrid = document.querySelector('.rec-grid');
+  if (recGrid) recObserver.observe(recGrid);
+</script>
+
+</body>
+</html>
