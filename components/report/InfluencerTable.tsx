@@ -29,7 +29,7 @@ export function InfluencerTable() {
   return (
     <section
       id="ranked-comparison"
-      className="scroll-mt-28 px-4 md:px-8 py-12 max-w-5xl mx-auto"
+      className="scroll-mt-28 py-12"
     >
       <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-1">
         Ranked Comparison
@@ -48,7 +48,7 @@ export function InfluencerTable() {
         <table className="w-full text-left text-sm">
           <thead>
             <tr className="border-b border-gray-200 dark:border-gray-700">
-              <th className="px-4 py-3 font-semibold text-gray-900 dark:text-gray-100">
+              <th className="px-4 py-3 font-semibold text-gray-900 dark:text-gray-100 text-center">
                 Rank
               </th>
               <th className="px-4 py-3 font-semibold text-gray-900 dark:text-gray-100">
@@ -74,7 +74,7 @@ export function InfluencerTable() {
                 key={row.rank}
                 className="border-b border-gray-100 dark:border-gray-700/80 last:border-0 hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors"
               >
-                <td className="px-4 py-3 text-gray-600 dark:text-gray-400 font-medium">
+                <td className="px-4 py-3 text-gray-600 dark:text-gray-400 font-medium text-center">
                   {row.rank}
                 </td>
                 <td className="px-4 py-3 text-gray-900 dark:text-gray-100 font-medium">
@@ -160,7 +160,7 @@ export function InfluencerTable() {
           <table className="w-full text-left text-sm">
             <thead>
               <tr className="border-b border-gray-200 dark:border-gray-700">
-                <th className="px-4 py-3 font-semibold text-gray-900 dark:text-gray-100">
+                <th className="px-4 py-3 font-semibold text-gray-900 dark:text-gray-100 text-center">
                   Rank
                 </th>
                 <th className="px-4 py-3 font-semibold text-gray-900 dark:text-gray-100">
@@ -183,7 +183,7 @@ export function InfluencerTable() {
                   key={row.rank}
                   className="border-b border-gray-100 dark:border-gray-700/80 last:border-0 hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors"
                 >
-                  <td className="px-4 py-3 text-gray-600 dark:text-gray-400 font-medium">
+                  <td className="px-4 py-3 text-gray-600 dark:text-gray-400 font-medium text-center">
                     {row.rank}
                   </td>
                   <td className="px-4 py-3 text-gray-900 dark:text-gray-100 font-medium">
@@ -268,7 +268,7 @@ export function InfluencerTable() {
           <table className="w-full text-left text-sm">
             <thead>
               <tr className="border-b border-gray-200 dark:border-gray-700">
-                <th className="px-4 py-3 font-semibold text-gray-900 dark:text-gray-100">
+                <th className="px-4 py-3 font-semibold text-gray-900 dark:text-gray-100 text-center">
                   Rank
                 </th>
                 <th className="px-4 py-3 font-semibold text-gray-900 dark:text-gray-100">
@@ -291,7 +291,7 @@ export function InfluencerTable() {
                   key={row.rank}
                   className="border-b border-gray-100 dark:border-gray-700/80 last:border-0 hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors"
                 >
-                  <td className="px-4 py-3 text-gray-600 dark:text-gray-400 font-medium">
+                  <td className="px-4 py-3 text-gray-600 dark:text-gray-400 font-medium text-center">
                     {row.rank}
                   </td>
                   <td className="px-4 py-3 text-gray-900 dark:text-gray-100 font-medium">

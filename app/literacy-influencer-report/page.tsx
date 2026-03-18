@@ -30,7 +30,7 @@ export default function LiteracyInfluencerReportPage() {
 
           <section
             id="source-links"
-            className="scroll-mt-28 px-0 py-12 max-w-4xl"
+            className="scroll-mt-28 py-12"
           >
             <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">
               Source Links

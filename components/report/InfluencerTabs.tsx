@@ -196,7 +196,7 @@ export function InfluencerTabs() {
   return (
     <section
       id="influencer-profiles"
-      className="scroll-mt-28 px-4 md:px-8 py-12 max-w-4xl mx-auto"
+      className="scroll-mt-28 py-12"
     >
       <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">
         Influencer Profiles
