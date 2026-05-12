@@ -153,7 +153,7 @@ export const experience = [
   {
     company: "Reading Horizons",
     role: "Web Developer — AI Tooling & WordPress Engineering · Full-time, In-house",
-    period: "Feb 2026 – May 2026",
+    period: "Feb 2026 – Present",
     highlights: [
       "Built wp-expert, a 25-tool MCP server for AI-driven WordPress management",
       "Architected a fully autonomous Python SEO audit pipeline replacing manual analyst workflows",
@@ -161,16 +161,6 @@ export const experience = [
       "Reduced CSS bundle 84% (696 KB → 112 KB); eliminated primary TBT source; implemented LCP preload",
       "Built 5 custom Gutenberg blocks and CPTs from scratch",
       "Implemented security hardening: login gating, XML-RPC disable, AJAX nonce validation",
-    ],
-  },
-  {
-    company: "9th South Digital",
-    role: "Contractor",
-    period: "2022 – Present",
-    highlights: [
-      "Building modern web applications across WordPress, headless CMS, and eCommerce platforms",
-      "Contributing UX and performance recommendations to client projects",
-      "Developing custom themes and reusable components",
     ],
   },
   {
@@ -186,11 +176,21 @@ export const experience = [
   {
     company: "Omni Creative",
     role: "Web Developer / Contractor",
-    period: "2024 – Present",
+    period: "2024 – 2026",
     highlights: [
       "Developed custom WordPress and Shopify sites",
       "Built modular templates and reusable components",
       "Contributed feedback on layout structure and performance",
+    ],
+  },
+  {
+    company: "9th South Digital",
+    role: "Contractor",
+    period: "2022 – 2026",
+    highlights: [
+      "Building modern web applications across WordPress, headless CMS, and eCommerce platforms",
+      "Contributing UX and performance recommendations to client projects",
+      "Developing custom themes and reusable components",
     ],
   },
 ];
