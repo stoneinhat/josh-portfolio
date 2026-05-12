@@ -57,9 +57,10 @@ export function Hero() {
             transition={{ delay: 0.5, duration: 0.8 }}
             className="mx-auto mb-12 max-w-2xl text-lg text-gray-600 dark:text-gray-300 sm:text-xl leading-relaxed"
           >
-            I&apos;m a <span className="font-bold text-gray-900 dark:text-white">{personalInfo.title}</span> specializing
-            in building <span className="text-green-600 dark:text-green-400 font-medium">modern web experiences</span> with a focus on performance,
-            accessibility, and user experience.
+            Full-stack web developer specializing in{" "}
+            <span className="font-bold text-gray-900 dark:text-white">WordPress, headless CMS, and modern JavaScript</span>
+            {" "}— now building{" "}
+            <span className="text-green-600 dark:text-green-400 font-medium">AI-powered automation tools and MCP servers</span>.
           </motion.p>
 
           {/* CTA Buttons */}

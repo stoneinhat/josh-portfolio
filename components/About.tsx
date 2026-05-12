@@ -3,24 +3,24 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Code2, Rocket, Zap } from "lucide-react";
+import { Code2, Sparkles, Zap } from "lucide-react";
 import Image from "next/image";
 
 const highlights = [
   {
     icon: Code2,
     label: "Modern Stack",
-    value: "React, Next.js, WordPress",
+    value: "React, Next.js, TypeScript, Tailwind, Python",
   },
   {
-    icon: Rocket,
-    label: "Scalable Solutions",
-    value: "E-commerce & Web Apps",
+    icon: Sparkles,
+    label: "AI & Automation",
+    value: "MCP servers, multi-LLM pipelines, OpenAI · Gemini · Claude APIs",
   },
   {
     icon: Zap,
     label: "Performance Focused",
-    value: "SEO & Accessibility",
+    value: "Core Web Vitals, WCAG accessibility, programmatic SEO at scale",
   },
 ];
 
@@ -91,10 +91,10 @@ export function About() {
           >
             <div className="space-y-6 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                <p>
-                 Website Engineer with hands-on experience building and maintaining modern web applications across WordPress, headless CMS, and eCommerce platforms.
+                 Full-stack web developer with hands-on experience building modern web applications across WordPress, headless CMS, and eCommerce platforms — now extending that work into AI-powered automation.
                </p>
                <p>
-                 Skilled in <strong className="font-semibold text-gray-900 dark:text-white">Next.js, React, Headless WordPress, PHP, and JavaScript</strong>, with a strong focus on UX/UI, performance optimization, and maintainable code.
+                 Skilled in <strong className="font-semibold text-gray-900 dark:text-white">Next.js, React, Headless WordPress, PHP, JavaScript, and Python</strong>, with growing depth in MCP servers, multi-LLM pipelines, and AI-driven tooling on top of strong UX/UI and performance fundamentals.
                </p>
                <p>
                  Regularly contributes recommendations around layout, content structure, and technical improvements to support usability, page speed, and conversion goals while collaborating with cross-functional teams.

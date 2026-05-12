@@ -1,4 +1,4 @@
-import { Code2, Database, Gauge, Wrench } from "lucide-react";
+import { Bot, Code2, Database, Gauge, ServerCog, Workflow, Wrench } from "lucide-react";
 
 export const personalInfo = {
   name: "Joshua Tesch",
@@ -53,6 +53,18 @@ export const skills = [
     ],
   },
   {
+    category: "AI & Automation",
+    icon: Bot,
+    items: [
+      "Claude API",
+      "OpenAI API (GPT-4o)",
+      "Google Gemini API",
+      "Model Context Protocol (MCP)",
+      "Multi-LLM Orchestration",
+      "Python 3",
+    ],
+  },
+  {
     category: "Tools & Technologies",
     icon: Wrench,
     items: [
@@ -60,6 +72,7 @@ export const skills = [
       "Docker",
       "Node.js",
       "PHP",
+      "Python",
       "AWS (EC2, S3)",
       "Vercel",
       "Figma",
@@ -69,6 +82,24 @@ export const skills = [
 ];
 
 export const projects = [
+  {
+    id: "wp-expert-mcp",
+    title: "wp-expert MCP Server",
+    description:
+      "A 25-tool Model Context Protocol server exposing full WordPress site management to AI assistants. Features dual-site routing, write confirmation gate, dynamic REST resolution, and a self-refreshing schema system.",
+    icon: ServerCog,
+    iconGradient: "from-blue-500 to-indigo-600",
+    tags: ["Node.js", "MCP SDK", "WordPress REST API"],
+  },
+  {
+    id: "seo-audit-pipeline",
+    title: "Autonomous SEO Audit Pipeline",
+    description:
+      "End-to-end weekly SEO audit system that orchestrates rankings, keyword data, multi-LLM brand visibility tracking, and site health scoring — then publishes a rendered dashboard to WordPress automatically. One CLI command, zero manual steps.",
+    icon: Workflow,
+    iconGradient: "from-emerald-500 to-cyan-600",
+    tags: ["Python", "OpenAI API", "Gemini API", "Claude API", "DataForSEO", "Firecrawl"],
+  },
   {
     id: "piped-peony",
     title: "The Piped Peony",
@@ -119,6 +150,19 @@ export const projects = [
 ];
 
 export const experience = [
+  {
+    company: "Reading Horizons",
+    role: "Web Developer — AI Tooling & WordPress Engineering · Full-time, In-house",
+    period: "Feb 2026 – May 2026",
+    highlights: [
+      "Built wp-expert, a 25-tool MCP server for AI-driven WordPress management",
+      "Architected a fully autonomous Python SEO audit pipeline replacing manual analyst workflows",
+      "Resolved 1,308 missing image alt texts, 124 meta descriptions, and 196 title overrides programmatically",
+      "Reduced CSS bundle 84% (696 KB → 112 KB); eliminated primary TBT source; implemented LCP preload",
+      "Built 5 custom Gutenberg blocks and CPTs from scratch",
+      "Implemented security hardening: login gating, XML-RPC disable, AJAX nonce validation",
+    ],
+  },
   {
     company: "9th South Digital",
     role: "Contractor",

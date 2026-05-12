@@ -5,6 +5,19 @@ import { useRef } from "react";
 import { projects } from "@/lib/constants";
 import { ExternalLink } from "lucide-react";
 import Image from "next/image";
+import type { LucideIcon } from "lucide-react";
+
+type ProjectCard = {
+  id: string;
+  title: string;
+  description: string;
+  tags: string[];
+  image?: string;
+  darkImage?: string;
+  link?: string;
+  icon?: LucideIcon;
+  iconGradient?: string;
+};
 
 export function Projects() {
   const ref = useRef(null);
@@ -29,7 +42,7 @@ export function Projects() {
         </motion.div>
 
         <div className="grid gap-12 md:grid-cols-2">
-          {projects.map((project, index) => (
+          {(projects as ProjectCard[]).map((project, index) => (
             <motion.article
               key={project.id}
               initial={{ opacity: 0, y: 30 }}
@@ -37,64 +50,75 @@ export function Projects() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="group"
             >
-              {/* Project Image */}
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`block relative aspect-video overflow-hidden rounded-lg mb-6 flex items-center justify-center ${
-                  project.id === "modern-metals" || project.id === "celebree-school"
-                    ? "bg-gray-900 dark:bg-gray-800"
-                    : "bg-gray-100 dark:bg-gray-800"
-                }`}
-              >
-                {project.id === "celebree-school" ? (
-                  <>
-                    {/* Celebree - constrained size to avoid blurriness */}
-                    <div className="relative w-full max-w-[300px] h-auto aspect-[300/72] dark:hidden">
+              {/* Project Image / Icon Card */}
+              {project.icon ? (
+                <div
+                  className={`relative aspect-video overflow-hidden rounded-lg mb-6 flex items-center justify-center bg-gradient-to-br ${project.iconGradient ?? "from-gray-700 to-gray-900"}`}
+                >
+                  {(() => {
+                    const Icon = project.icon as LucideIcon;
+                    return <Icon className="h-20 w-20 text-white/90" strokeWidth={1.25} />;
+                  })()}
+                </div>
+              ) : (
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`block relative aspect-video overflow-hidden rounded-lg mb-6 flex items-center justify-center ${
+                    project.id === "modern-metals" || project.id === "celebree-school"
+                      ? "bg-gray-900 dark:bg-gray-800"
+                      : "bg-gray-100 dark:bg-gray-800"
+                  }`}
+                >
+                  {project.id === "celebree-school" ? (
+                    <>
+                      {/* Celebree - constrained size to avoid blurriness */}
+                      <div className="relative w-full max-w-[300px] h-auto aspect-[300/72] dark:hidden">
+                        <Image
+                          src={project.image!}
+                          alt={project.title}
+                          fill
+                          className="object-contain transition-transform duration-500 group-hover:scale-105"
+                          sizes="300px"
+                          quality={100}
+                          unoptimized
+                        />
+                      </div>
+                      <div className="relative w-full max-w-[300px] h-auto aspect-[300/72] hidden dark:block">
+                        <Image
+                          src={project.darkImage ?? project.image!}
+                          alt={project.title}
+                          fill
+                          className="object-contain transition-transform duration-500 group-hover:scale-105"
+                          sizes="300px"
+                          quality={100}
+                          unoptimized
+                        />
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      {/* Light mode image */}
                       <Image
-                        src={project.image}
+                        src={project.image!}
                         alt={project.title}
                         fill
-                        className="object-contain transition-transform duration-500 group-hover:scale-105"
-                        sizes="300px"
-                        quality={100}
-                        unoptimized
+                        className="object-contain p-8 transition-transform duration-500 group-hover:scale-105 dark:hidden"
+                        sizes="(max-width: 768px) 100vw, 50vw"
                       />
-                    </div>
-                    <div className="relative w-full max-w-[300px] h-auto aspect-[300/72] hidden dark:block">
+                      {/* Dark mode image */}
                       <Image
-                        src={(project as any).darkImage || project.image}
+                        src={project.darkImage ?? project.image!}
                         alt={project.title}
                         fill
-                        className="object-contain transition-transform duration-500 group-hover:scale-105"
-                        sizes="300px"
-                        quality={100}
-                        unoptimized
+                        className="object-contain p-8 transition-transform duration-500 group-hover:scale-105 hidden dark:block"
+                        sizes="(max-width: 768px) 100vw, 50vw"
                       />
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    {/* Light mode image */}
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      className="object-contain p-8 transition-transform duration-500 group-hover:scale-105 dark:hidden"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                    {/* Dark mode image */}
-                    <Image
-                      src={(project as any).darkImage || project.image}
-                      alt={project.title}
-                      fill
-                      className="object-contain p-8 transition-transform duration-500 group-hover:scale-105 hidden dark:block"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                  </>
-                )}
-              </a>
+                    </>
+                  )}
+                </a>
+              )}
 
               {/* Project Content */}
               <div>
