@@ -32,12 +32,27 @@ function ProjectMedia({
 
   if (project.icon) {
     const Icon = project.icon;
-    return (
+    const iconCard = (
       <div
         className={`relative aspect-video overflow-hidden rounded-lg ${spacing} flex items-center justify-center bg-gradient-to-br ${project.iconGradient ?? "from-gray-700 to-gray-900"}`}
       >
         <Icon className="h-20 w-20 text-white/90" strokeWidth={1.25} />
       </div>
+    );
+
+    if (!project.link) {
+      return iconCard;
+    }
+
+    return (
+      <a
+        href={project.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block"
+      >
+        {iconCard}
+      </a>
     );
   }
 

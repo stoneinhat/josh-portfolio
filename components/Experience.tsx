@@ -67,15 +67,7 @@ export function Experience() {
                         className="text-base text-gray-600 dark:text-gray-300 flex items-start gap-3 leading-relaxed"
                       >
                         <span className="text-gray-400 dark:text-gray-600 mt-1.5 text-xs">•</span>
-                        <span
-                          className={
-                            highlight.startsWith("TODO")
-                              ? "font-medium text-amber-700 dark:text-amber-400"
-                              : undefined
-                          }
-                        >
-                          {highlight}
-                        </span>
+                        <span>{highlight}</span>
                       </li>
                     ))}
                   </ul>

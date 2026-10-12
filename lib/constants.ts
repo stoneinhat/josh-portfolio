@@ -109,8 +109,6 @@ export const projects = [
     icon: ServerCog,
     iconGradient: "from-blue-500 to-indigo-600",
     tags: ["Node.js", "@modelcontextprotocol/sdk", "WordPress REST API"],
-    // TODO: Link the GitHub repo only after Joshua confirms a public URL. No public wp-expert repo was found under github.com/stoneinhat.
-    todo: "TODO: GitHub link — confirm a public repo URL before linking.",
   },
   {
     id: "seo-audit-pipeline",
@@ -202,6 +200,7 @@ export const projects = [
       "Squarespace to WordPress/WP Engine with 26 verified redirects, DNS cutover, SPF/email continuity, SEO and schema cleanup, and alt text on all 70 images. Consolidated hosting saves ~$331/yr.",
     icon: ArrowLeftRight,
     iconGradient: "from-gray-600 to-gray-800",
+    link: "https://riseliteracy.org/",
     tags: ["WordPress", "WP Engine", "DNS", "SEO"],
   },
 ];
@@ -232,11 +231,11 @@ export const experience = [
   {
     company: "STRS Development",
     role: "Web Developer",
-    // TODO: Confirm this end date with Joshua before publishing. Range below is the one supplied for the past role.
-    period: "2025 – 2026",
+    period: "2025 – Present",
     highlights: [
-      "Built features and UI updates for production web applications across the stack, with a focus on usability and performance",
-      "TODO (I'll supply): one concrete project or outcome",
+      "Collaborated on scalable, production-ready web applications",
+      "Participated in discussions around usability and performance",
+      "Implemented features and UI updates",
     ],
   },
   {
@@ -244,8 +243,9 @@ export const experience = [
     role: "Web Developer, Contractor",
     period: "2024 – 2026",
     highlights: [
-      "Built custom WordPress and Shopify storefronts with modular block templates and reusable components",
-      "TODO (I'll supply): one concrete project or outcome",
+      "Developed custom WordPress and Shopify sites",
+      "Built modular templates and reusable components",
+      "Contributed feedback on layout structure and performance",
     ],
   },
   {
@@ -253,8 +253,9 @@ export const experience = [
     role: "Web Developer, Contractor",
     period: "2022 – 2026",
     highlights: [
-      "Built applications across WordPress, headless CMS, and WooCommerce/Shopify; custom themes and reusable components",
-      "TODO (I'll supply): one concrete project or outcome",
+      "Building modern web applications across WordPress, headless CMS, and eCommerce platforms",
+      "Contributing UX and performance recommendations to client projects",
+      "Developing custom themes and reusable components",
     ],
   },
 ];
