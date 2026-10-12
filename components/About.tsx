@@ -9,18 +9,18 @@ import Image from "next/image";
 const highlights = [
   {
     icon: Code2,
-    label: "Modern Stack",
-    value: "React, Next.js, TypeScript, Tailwind, Python",
+    label: "Full-Stack",
+    value: "WordPress, Next.js, headless CMS",
   },
   {
     icon: Sparkles,
     label: "AI & Automation",
-    value: "MCP servers, multi-LLM pipelines, OpenAI · Gemini · Claude APIs",
+    value: "MCP servers, multi-LLM pipelines",
   },
   {
     icon: Zap,
-    label: "Performance Focused",
-    value: "Core Web Vitals, WCAG accessibility, programmatic SEO at scale",
+    label: "Measurable Impact",
+    value: "Performance, SEO, analytics",
   },
 ];
 
@@ -77,7 +77,7 @@ export function About() {
                     transition={{ delay: 0.6 }}
                     className="absolute bottom-4 -right-4 bg-white dark:bg-gray-800 px-4 py-2 rounded-full shadow-lg border border-gray-100 dark:border-gray-700 hidden sm:block"
                  >
-                    <span className="text-sm font-medium text-gray-900 dark:text-white">Web Developer</span>
+                    <span className="text-sm font-medium text-gray-900 dark:text-white">Full-Stack Developer</span>
                  </motion.div>
             </div>
           </motion.div>
@@ -91,13 +91,13 @@ export function About() {
           >
             <div className="space-y-6 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                <p>
-                 Full-stack web developer with hands-on experience building modern web applications across WordPress, headless CMS, and eCommerce platforms — now extending that work into AI-powered automation.
+                 I&apos;m a full-stack web developer with 4+ years building production WordPress, headless CMS, and JavaScript applications.
                </p>
                <p>
-                 Skilled in <strong className="font-semibold text-gray-900 dark:text-white">Next.js, React, Headless WordPress, PHP, JavaScript, and Python</strong>, with growing depth in MCP servers, multi-LLM pipelines, and AI-driven tooling on top of strong UX/UI and performance fundamentals.
+                 Today I&apos;m the technical owner of a marketing website: architecture, Core Web Vitals, technical SEO, analytics, accessibility, and increasingly the content strategy behind them.
                </p>
                <p>
-                 Regularly contributes recommendations around layout, content structure, and technical improvements to support usability, page speed, and conversion goals while collaborating with cross-functional teams.
+                 I also build AI tooling that does real work: an MCP server that lets AI assistants manage WordPress, and an autonomous multi-LLM pipeline that audits SEO and AI visibility every week.
                </p>
             </div>
 

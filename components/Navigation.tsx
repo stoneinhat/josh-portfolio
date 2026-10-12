@@ -159,7 +159,7 @@ export function Navigation() {
                         onClick={() => scrollToSection("#contact")}
                         className="px-4 py-2 text-sm font-medium bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 rounded-full hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors cursor-pointer"
                     >
-                        Let&apos;s Talk
+                        Send a note
                     </button>
                 </div>
             </div>
@@ -200,7 +200,7 @@ export function Navigation() {
                         onClick={() => scrollToSection("#contact")}
                         className="w-full mt-2 px-4 py-3 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 rounded-xl text-sm font-medium hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors cursor-pointer"
                     >
-                        Let&apos;s Talk
+                        Send a note
                     </button>
                 </div>
             </motion.div>

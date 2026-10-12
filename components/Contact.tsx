@@ -92,9 +92,7 @@ export function Contact() {
                 Let&apos;s Connect
               </h3>
               <p className="text-base text-gray-600 dark:text-gray-300 leading-relaxed">
-                I&apos;m always interested in hearing about new projects and
-                opportunities. Whether you have a question or just want to say
-                hi, feel free to reach out!
+                Open to new opportunities. Send me a note.
               </p>
             </div>
 
