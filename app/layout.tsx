@@ -14,24 +14,42 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteTitle = "Joshua Tesch | Full-Stack Web Developer & AI Tooling";
+const siteDescription =
+  "Full-stack developer building WordPress sites, modern web apps, and AI tooling. Currently owning the Reading Horizons marketing website: performance, SEO, analytics, and automation.";
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Joshua Tesch",
+  url: "https://joshuatesch.dev",
+  sameAs: [
+    "https://github.com/stoneinhat",
+    "https://www.linkedin.com/in/joshua-tesch-b10848100/",
+  ],
+};
+
 export const metadata: Metadata = {
-  title: "Joshua Tesch | Web Developer",
-  description:
-    "Website Engineer developer with hands-on experience building modern web applications across WordPress, headless CMS, and eCommerce platforms.",
+  metadataBase: new URL("https://joshuatesch.dev"),
+  title: siteTitle,
+  description: siteDescription,
   keywords: [
     "web developer",
+    "full-stack",
     "joshua tesch",
     "next.js",
     "react",
     "wordpress",
     "shopify",
     "web development",
+    "AI tooling",
+    "technical SEO",
+    "MCP",
   ],
   authors: [{ name: "Joshua Tesch" }],
   openGraph: {
-    title: "Joshua Tesch | Web Developer",
-    description:
-      "Website Engineer developer specializing in modern web applications",
+    title: siteTitle,
+    description: siteDescription,
     url: "https://joshuatesch.dev",
     siteName: "Joshua Tesch Portfolio",
     locale: "en_US",
@@ -39,9 +57,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Joshua Tesch | Web Developer",
-    description:
-      "Website Engineer developer specializing in modern web applications",
+    title: siteTitle,
+    description: siteDescription,
   },
 };
 
@@ -66,6 +83,10 @@ export default function RootLayout({
               })();
             `,
           }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
       </head>
       <body

@@ -1,17 +1,45 @@
-import { Bot, Code2, Database, Gauge, ServerCog, Workflow, Wrench } from "lucide-react";
+import {
+  ArrowLeftRight,
+  Bot,
+  Code2,
+  Database,
+  Eye,
+  FileSearch,
+  Gauge,
+  ServerCog,
+  Workflow,
+  Wrench,
+} from "lucide-react";
 
 export const personalInfo = {
   name: "Joshua Tesch",
-  title: "Web Developer",
+  title: "Full-Stack Web Developer",
   email: "joshuastesch@gmail.com",
   phone: "801-703-1750",
   website: "joshuatesch.dev",
-  tagline: "Building Modern Web Experiences",
-  bio: "Website Engineer developer with hands-on experience building and maintaining modern web applications across WordPress, headless CMS, and eCommerce platforms. Skilled in Next.js, React, Headless WordPress, PHP, and JavaScript, with a strong focus on UX/UI, performance optimization, and maintainable code. Regularly contributes recommendations around layout, content structure, and technical improvements to support usability, page speed, and conversion goals while collaborating with cross-functional teams.",
-  currentRole: "Currently working with 9th South Digital",
+  tagline:
+    "Full-stack developer building WordPress sites, modern web apps, and AI tooling.",
+  summary:
+    "Currently owning the marketing website for Reading Horizons: performance, SEO, analytics, and the AI tooling that automates it.",
+  bio: "I'm a full-stack web developer with 4+ years building production WordPress, headless CMS, and JavaScript applications. Today I'm the technical owner of a marketing website: architecture, Core Web Vitals, technical SEO, analytics, accessibility, and increasingly the content strategy behind them. I also build AI tooling that does real work: an MCP server that lets AI assistants manage WordPress, and an autonomous multi-LLM pipeline that audits SEO and AI visibility every week.",
+  currentRole: "Web Developer at Reading Horizons",
 };
 
 export const skills = [
+  {
+    category: "AI & Automation",
+    icon: Bot,
+    items: [
+      "Claude API",
+      "OpenAI API (GPT-4o)",
+      "Google Gemini API",
+      "Model Context Protocol (MCP)",
+      "Multi-LLM Orchestration",
+      "Python 3",
+      "Node.js",
+      "Programmatic content automation",
+    ],
+  },
   {
     category: "Frontend Development",
     icon: Code2,
@@ -48,20 +76,10 @@ export const skills = [
       "Core Web Vitals",
       "Accessibility (WCAG)",
       "SEO Best Practices",
+      "Technical SEO & structured data",
+      "Google Tag Manager / GA4",
       "Responsive Design",
       "UX/UI Best Practices",
-    ],
-  },
-  {
-    category: "AI & Automation",
-    icon: Bot,
-    items: [
-      "Claude API",
-      "OpenAI API (GPT-4o)",
-      "Google Gemini API",
-      "Model Context Protocol (MCP)",
-      "Multi-LLM Orchestration",
-      "Python 3",
     ],
   },
   {
@@ -84,24 +102,47 @@ export const skills = [
 export const projects = [
   {
     id: "wp-expert-mcp",
+    group: "ai" as const,
     title: "wp-expert MCP Server",
     description:
-      "A 25-tool Model Context Protocol server exposing full WordPress site management to AI assistants. Features dual-site routing, write confirmation gate, dynamic REST resolution, and a self-refreshing schema system.",
+      "25-tool Node.js MCP server that lets AI assistants (Claude, Cursor, VS Code) manage WordPress. Dual-site routing, write confirmation gate, dynamic REST path resolution, ACF fallback, and a self-refreshing schema. Six modules: Read, Write, Advise, Yoast, Media, and ACF.",
     icon: ServerCog,
     iconGradient: "from-blue-500 to-indigo-600",
-    tags: ["Node.js", "MCP SDK", "WordPress REST API"],
+    tags: ["Node.js", "@modelcontextprotocol/sdk", "WordPress REST API"],
   },
   {
     id: "seo-audit-pipeline",
+    group: "ai" as const,
     title: "Autonomous SEO Audit Pipeline",
     description:
-      "End-to-end weekly SEO audit system that orchestrates rankings, keyword data, multi-LLM brand visibility tracking, and site health scoring — then publishes a rendered dashboard to WordPress automatically. One CLI command, zero manual steps.",
+      "Replaced a manual analyst workflow with one CLI command. Pulls Search Console, DataForSEO, and Firecrawl data, tracks 70+ week-over-week metrics, and publishes a tabbed HTML dashboard to WordPress via REST.",
     icon: Workflow,
     iconGradient: "from-emerald-500 to-cyan-600",
-    tags: ["Python", "OpenAI API", "Gemini API", "Claude API", "DataForSEO", "Firecrawl"],
+    tags: ["Python", "OpenAI", "Gemini", "Claude", "GSC", "DataForSEO", "Firecrawl"],
+  },
+  {
+    id: "ai-visibility-tracker",
+    group: "ai" as const,
+    title: "AI Visibility Tracker",
+    description:
+      "30 queries per run across GPT-4o-mini, Gemini Flash, and Claude Haiku. Measures Share of Voice against 7 competitors with citation extraction.",
+    icon: Eye,
+    iconGradient: "from-violet-500 to-purple-600",
+    tags: ["Python", "GPT-4o-mini", "Gemini Flash", "Claude Haiku"],
+  },
+  {
+    id: "site-audit-analyzer",
+    group: "ai" as const,
+    title: "Site Audit Analyzer",
+    description:
+      "Ingests crawls of up to 700 pages, runs 15 SEO checks across 3 severity tiers, produces a weighted 0–100 health score, and audits AI-crawler access rules in robots.txt.",
+    icon: FileSearch,
+    iconGradient: "from-amber-500 to-orange-600",
+    tags: ["Python", "Firecrawl"],
   },
   {
     id: "piped-peony",
+    group: "client" as const,
     title: "The Piped Peony",
     description:
       "Full-stack e-commerce web application using Next.js and TypeScript, styled with Tailwind CSS and powered by a Strapi headless CMS. Implemented modular components and API-driven content with focus on UI patterns, accessibility, and performance improvements.",
@@ -111,6 +152,7 @@ export const projects = [
   },
   {
     id: "modern-metals",
+    group: "client" as const,
     title: "Modern Metals",
     description:
       "Custom WordPress theme using Elementor and Advanced Custom Fields (ACF), creating flexible, reusable templates and a fully client-editable content system. Contributed UX and layout recommendations to improve content clarity, responsiveness, and overall site performance.",
@@ -120,6 +162,7 @@ export const projects = [
   },
   {
     id: "swan-toilets",
+    group: "client" as const,
     title: "SWAN Toilets",
     description:
       "Custom WordPress eCommerce site using Elementor and WooCommerce. Implemented reusable templates, optimized product layouts, and contributed UX recommendations to improve product discovery and conversion flow.",
@@ -130,6 +173,7 @@ export const projects = [
   },
   {
     id: "forevering-jewelry",
+    group: "client" as const,
     title: "Forevering Jewelry",
     description:
       "Custom Shopify eCommerce site using Liquid, delivering a responsive, conversion-focused storefront. Implemented reusable theme components and contributed UX improvements to product presentation and checkout flow.",
@@ -140,6 +184,7 @@ export const projects = [
   },
   {
     id: "celebree-school",
+    group: "client" as const,
     title: "Celebree School",
     description:
       "Custom WordPress theme using Elementor and ACF for a national brand. Built reusable templates and a client-editable content system while contributing UX and performance improvements to support accessibility and consistent branding across locations.",
@@ -147,20 +192,40 @@ export const projects = [
     link: "https://celebree.com",
     tags: ["WordPress", "Elementor", "ACF", "Enterprise", "Multi-location"],
   },
+  {
+    id: "rise-migration",
+    group: "client" as const,
+    title: "RISE Migration",
+    description:
+      "Squarespace to WordPress/WP Engine with 26 verified redirects, DNS cutover, SPF/email continuity, SEO and schema cleanup, and alt text on all 70 images. Consolidated hosting saves ~$331/yr.",
+    icon: ArrowLeftRight,
+    iconGradient: "from-gray-600 to-gray-800",
+    link: "https://riseliteracy.org/",
+    tags: ["WordPress", "WP Engine", "DNS", "SEO"],
+  },
+];
+
+export const projectResults = [
+  { value: "84%", label: "CSS reduction, 696 KB to 112 KB" },
+  { value: "1,308", label: "alt texts fixed programmatically" },
+  { value: "~2x", label: "GA4 data inflation found and removed" },
+  { value: "26", label: "verified redirects on a platform migration" },
+  { value: "253", label: "documented changes, Feb–Sep 2026" },
 ];
 
 export const experience = [
   {
     company: "Reading Horizons",
-    role: "Web Developer — AI Tooling & WordPress Engineering · Full-time, In-house",
-    period: "Feb 2026 – Present",
+    role: "Web Developer: Website Engineering, AI Tooling & Marketing Strategy",
+    period: "Jan 2026 – Present",
     highlights: [
-      "Built wp-expert, a 25-tool MCP server for AI-driven WordPress management",
-      "Architected a fully autonomous Python SEO audit pipeline replacing manual analyst workflows",
-      "Resolved 1,308 missing image alt texts, 124 meta descriptions, and 196 title overrides programmatically",
-      "Reduced CSS bundle 84% (696 KB → 112 KB); eliminated primary TBT source; implemented LCP preload",
-      "Built 5 custom Gutenberg blocks and CPTs from scratch",
-      "Implemented security hardening: login gating, XML-RPC disable, AJAX nonce validation",
+      "Technical owner of the marketing website; scope expanded from development into SEO, analytics, and content strategy",
+      "Built the wp-expert MCP server and a suite of Python audit/automation pipelines (see Projects)",
+      "Cut Tailwind CSS 84% (696 KB to 112 KB), lazy-loaded a 12 MB Lottie asset, improved LCP, and raised mobile Lighthouse Best Practices from 81 to 100",
+      "Found and removed a duplicate GA4 destination that had inflated pageviews/events ~2x; added conversion and CTA event tracking in GTM",
+      "Rebuilt blog taxonomy around 9 content pillars with redirects and editor governance; bulk-pushed 124 meta descriptions, 196 title overrides, and 1,308 alt texts",
+      "Completed the RISE site migration to WordPress/WP Engine (26 verified redirects)",
+      "Built 5 custom blocks/CPTs and reusable Gutenberg/ACF patterns for non-technical editors",
     ],
   },
   {
@@ -175,7 +240,7 @@ export const experience = [
   },
   {
     company: "Omni Creative",
-    role: "Web Developer / Contractor",
+    role: "Web Developer, Contractor",
     period: "2024 – 2026",
     highlights: [
       "Developed custom WordPress and Shopify sites",
@@ -185,7 +250,7 @@ export const experience = [
   },
   {
     company: "9th South Digital",
-    role: "Contractor",
+    role: "Web Developer, Contractor",
     period: "2022 – 2026",
     highlights: [
       "Building modern web applications across WordPress, headless CMS, and eCommerce platforms",
@@ -200,4 +265,3 @@ export const socialLinks = {
   linkedin: "https://www.linkedin.com/in/joshua-tesch-b10848100/",
   email: "mailto:joshuastesch@gmail.com",
 };
-
